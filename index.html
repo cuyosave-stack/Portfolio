@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aven Joy Cuyos — BSIT Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#f7f5f1;
+--surface:#ffffff;
+--text:#1a1a1a;
+--muted:#6b6b6b;
+--faint:#e8e4dd;
+--accent:#3d6b4f;
+--accent-light:#eef5f1;
+--accent-mid:#7aaa8f;
+--serif:'DM Serif Display',serif;
+--sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;font-weight:300}
+a{color:inherit;text-decoration:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(247,245,241,0.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--faint)}
+.nav-logo{font-family:var(--serif);font-size:1.15rem;letter-spacing:0.02em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
+.nav-links a:hover{color:var(--accent)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:22px;height:1.5px;background:var(--text);transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:99;flex-direction:column;justify-content:center;align-items:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--text)}
+
+section{padding:5rem 2rem}
+.container{max-width:900px;margin:0 auto}
+
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:6rem;background:var(--bg)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;max-width:900px;margin:0 auto}
+.hero-tag{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.35rem 0.9rem;border-radius:999px;margin-bottom:1.5rem}
+.hero-name{font-family:var(--serif);font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.08;margin-bottom:1.2rem;color:var(--text)}
+.hero-name em{color:var(--accent);font-style:italic}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:380px;margin-bottom:2rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:0.75rem 1.75rem;border-radius:999px;font-size:0.875rem;font-family:var(--sans);font-weight:500;letter-spacing:0.04em;transition:all 0.2s;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff;border:1.5px solid var(--accent)}
+.btn-primary:hover{background:#2e5440}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--faint)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-visual{display:flex;justify-content:center}
+.hero-card{background:var(--surface);border-radius:24px;padding:2.5rem 2rem;border:1px solid var(--faint);width:100%;max-width:300px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.stat-item{background:var(--bg);border-radius:14px;padding:1rem;text-align:center}
+.stat-num{font-family:var(--serif);font-size:1.8rem;color:var(--accent)}
+.stat-label{font-size:0.7rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.15rem}
+.status-dot{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:#4caf50;flex-shrink:0;box-shadow:0 0 0 3px rgba(76,175,80,0.2)}
+
+.section-label{font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:500}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);line-height:1.15;margin-bottom:3rem;color:var(--text)}
+
+#about{background:var(--surface)}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
+.about-text p{color:var(--muted);line-height:1.9;font-size:0.975rem}
+.about-text p+p{margin-top:1.2rem}
+.about-aside{display:flex;flex-direction:column;gap:1.5rem}
+.aside-card{background:var(--bg);border-radius:16px;padding:1.5rem}
+.aside-card h4{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem}
+.aside-card p{font-size:0.9rem;color:var(--text);font-weight:400}
+
+#skills{background:var(--bg)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.skill-card{background:var(--surface);border:1px solid var(--faint);border-radius:16px;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s,transform 0.2s}
+.skill-card:hover{border-color:var(--accent-mid);transform:translateY(-2px)}
+.skill-name{font-weight:500;font-size:0.95rem}
+.skill-level{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:999px}
+.level-solid{background:var(--accent-light);color:var(--accent)}
+.level-learning{background:#fff8e8;color:#a67c00}
+
+#projects{background:var(--surface)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.5rem}
+.project-card{border:1px solid var(--faint);border-radius:20px;padding:2rem;background:var(--bg);transition:border-color 0.2s,box-shadow 0.2s}
+.project-card:hover{border-color:var(--accent-mid);box-shadow:0 8px 32px rgba(61,107,79,0.08)}
+.project-num{font-family:var(--serif);font-size:0.85rem;color:var(--accent-mid);margin-bottom:1rem}
+.project-title{font-family:var(--serif);font-size:1.5rem;margin-bottom:0.75rem;color:var(--text)}
+.project-desc{font-size:0.9rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.tag{font-size:0.72rem;padding:0.3rem 0.75rem;border-radius:999px;background:var(--surface);border:1px solid var(--faint);color:var(--muted);letter-spacing:0.04em}
+.project-status{display:inline-block;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:999px}
+.status-progress{background:#fff8e8;color:#a67c00}
+.status-done{background:var(--accent-light);color:var(--accent)}
+
+#education{background:var(--bg)}
+.edu-list{display:flex;flex-direction:column;gap:0;position:relative}
+.edu-list::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--faint)}
+.edu-item{padding:0 0 2.5rem 2rem;position:relative}
+.edu-item::before{content:'';position:absolute;left:-4px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.edu-year{font-size:0.78rem;color:var(--muted);letter-spacing:0.08em;margin-bottom:0.4rem}
+.edu-degree{font-family:var(--serif);font-size:1.35rem;margin-bottom:0.2rem}
+.edu-school{font-size:0.9rem;color:var(--accent);margin-bottom:0.5rem}
+.edu-desc{font-size:0.875rem;color:var(--muted);max-width:540px;line-height:1.8}
+
+#contact{background:var(--surface)}
+.contact-inner{max-width:640px;margin:0 auto}
+.contact-form{display:flex;flex-direction:column;gap:1.25rem;margin-top:2.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.field{display:flex;flex-direction:column;gap:0.4rem}
+label{font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+input,textarea{width:100%;padding:0.85rem 1.1rem;border:1px solid var(--faint);border-radius:12px;font-family:var(--sans);font-size:0.95rem;color:var(--text);background:var(--bg);outline:none;transition:border-color 0.2s;resize:vertical}
+input:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:130px}
+.contact-links{display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap}
+.contact-chip{display:flex;align-items:center;gap:0.6rem;padding:0.7rem 1.2rem;border:1px solid var(--faint);border-radius:999px;font-size:0.85rem;color:var(--muted);background:var(--bg);transition:all 0.2s}
+.contact-chip:hover{border-color:var(--accent);color:var(--accent)}
+.contact-chip svg{width:16px;height:16px;stroke:currentColor;fill:none;flex-shrink:0}
+
+footer{background:var(--bg);border-top:1px solid var(--faint);padding:2rem;text-align:center;font-size:0.8rem;color:var(--muted)}
+
+@media(max-width:768px){
+nav{padding:1rem 1.25rem}
+.nav-links{display:none}
+.hamburger{display:flex}
+.hero-inner{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+.hero-desc{max-width:100%;margin-left:auto;margin-right:auto}
+.hero-cta{justify-content:center}
+.hero-visual{order:-1}
+.hero-card{max-width:260px}
+.about-grid{grid-template-columns:1fr;gap:2.5rem}
+.projects-grid{grid-template-columns:1fr}
+.form-row{grid-template-columns:1fr}
+section{padding:4rem 1.25rem}
+}
+@media(max-width:480px){
+.stat-grid{grid-template-columns:1fr 1fr}
+.skills-grid{grid-template-columns:1fr}
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp 0.7s ease forwards}
+.delay-1{animation-delay:0.1s}
+.delay-2{animation-delay:0.22s}
+.delay-3{animation-delay:0.36s}
+.delay-4{animation-delay:0.5s}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Aven Joy Cuyos</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#education" onclick="toggleMenu()">Education</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag fade-up delay-1">Open to Opportunities</div>
+      <h1 class="hero-name fade-up delay-2">Aven Joy<br><em>Cuyos</em></h1>
+      <p class="hero-desc fade-up delay-3">A 3rd-year BSIT student at STI College Tanay, aiming to learn and grow in the IT industry — one project at a time.</p>
+      <div class="hero-cta fade-up delay-4">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up delay-3">
+      <div class="hero-card">
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-num">7+</div>
+            <div class="stat-label">Languages</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">3rd</div>
+            <div class="stat-label">Year</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">HUMSS</div>
+            <div class="stat-label">SHS Strand</div>
+          </div>
+        </div>
+        <div class="status-dot">
+          <span class="dot"></span>
+          Currently building a capstone
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Curious by nature,<br>building by choice.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm Aven Joy G. Cuyos, a 3rd-year Bachelor of Science in Information Technology student at STI College Tanay. I'm passionate about technology and driven by a genuine desire to grow in the IT industry.</p>
+        <p>Currently, I'm actively building my capstone project — Engkwento — a Unity game that draws from Philippine mythology and culture. Alongside that, I continue to expand my knowledge in web development and software engineering.</p>
+        <p>I believe in learning by doing. Every project I take on is an opportunity to sharpen my skills and understand how technology can solve real-world problems.</p>
+      </div>
+      <div class="about-aside">
+        <div class="aside-card">
+          <h4>Currently</h4>
+          <p>Building Engkwento — a Filipino folklore-inspired Unity game for capstone</p>
+        </div>
+        <div class="aside-card">
+          <h4>Learning</h4>
+          <p>JavaScript, SQL Database, and deepening Unity/C# knowledge</p>
+        </div>
+        <div class="aside-card">
+          <h4>Goal</h4>
+          <p>To learn and contribute meaningfully in the IT industry</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">What I work with.</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-name">Java</span>
+        <span class="skill-level level-solid">Familiar</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-name">Python</span>
+        <span class="skill-level level-solid">Familiar</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-name">HTML</span>
+        <span class="skill-level level-solid">Familiar</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-name">CSS</span>
+        <span class="skill-level level-solid">Familiar</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-name">C#</span>
+        <span class="skill-level level-solid">Basic</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-name">JavaScript</span>
+        <span class="skill-level level-learning">Learning</span>
+      </div>
+      <div class="skill-card">
+        <span class="skill-name">SQL Database</span>
+        <span class="skill-level level-learning">Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Things I've built.</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <h3 class="project-title">Engkwento</h3>
+        <p class="project-desc">A Unity game built with C# for our capstone, featuring Philippine-based mythological creatures. Players explore a story rooted in Filipino folklore and culture — built from the ground up while learning Unity hands-on.</p>
+        <div class="project-tags">
+          <span class="tag">Unity</span>
+          <span class="tag">C#</span>
+          <span class="tag">Game Dev</span>
+          <span class="tag">Capstone</span>
+          <span class="tag">Filipino Culture</span>
+        </div>
+        <span class="project-status status-progress">In Progress</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <h3 class="project-title">Department Store Management System</h3>
+        <p class="project-desc">A final project from 2nd year that allows store staff to input customer orders and generate printed receipts. Designed to streamline store operations and reduce manual workload.</p>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">System Design</span>
+          <span class="tag">Final Project</span>
+        </div>
+        <span class="project-status status-done">Completed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">My academic journey.</h2>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-year">2023 — Present</div>
+        <div class="edu-degree">Bachelor of Science in Information Technology</div>
+        <div class="edu-school">STI College Tanay</div>
+        <p class="edu-desc">Studying core IT subjects including programming, networking, systems analysis, and software development. Currently in 3rd year, actively working on capstone project Engkwento.</p>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2020 — 2023</div>
+        <div class="edu-degree">Senior High School — HUMSS Strand</div>
+        <div class="edu-school">Humanities & Social Sciences</div>
+        <p class="edu-desc">Completed the HUMSS strand which developed strong communication and analytical thinking skills — a foundation that complements my technical growth in IT.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's connect.</h2>
+      <div class="contact-links">
+        <a href="mailto:your@email.com" class="contact-chip">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Email Me
+        </a>
+        <a href="https://github.com/" target="_blank" class="contact-chip">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Juan dela Cruz" required>
+          </div>
+          <div class="field">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" placeholder="juan@email.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="What would you like to say?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Aven Joy G. Cuyos &mdash; BSIT · 3rd Year · STI College Tanay &mdash; 2025</p>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+function handleSubmit(e){
+  e.preventDefault();
+  var btn=e.target.querySelector('button[type="submit"]');
+  btn.textContent='Message Sent ✓';
+  btn.disabled=true;
+  btn.style.background='#3d6b4f';
+  setTimeout(function(){
+    btn.textContent='Send Message';
+    btn.disabled=false;
+    e.target.reset();
+  },3000);
+}
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.style.opacity='1';
+      entry.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.project-card,.skill-card,.edu-item,.aside-card').forEach(function(el){
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity 0.55s ease, transform 0.55s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
